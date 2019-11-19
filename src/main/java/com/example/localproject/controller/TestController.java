@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -44,8 +45,11 @@ public class TestController {
         return appResponse;
     }
 
-    public static void main(String[] args) {
-        Double aDouble = new Double("0.498");
-        System.out.println(aDouble);
+    @RequestMapping(value = "index", method = {RequestMethod.GET})
+    public ModelAndView index(HttpServletRequest request, HttpServletResponse response) {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("username", name);
+        modelAndView.setViewName("index");
+        return modelAndView;
     }
 }
