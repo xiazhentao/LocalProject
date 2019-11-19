@@ -1,0 +1,40 @@
+[INFO ] 2019-10-17 17:24:28,728 [main] org.springframework.boot.StartupInfoLogger.logStarting(StartupInfoLogger.java:50) >>> Starting LocalprojectApplication on xiazhengtaodeMacBook-Pro.local with PID 41753 (/Users/xiazhengtao/project/localProject/target/classes started by xiazhengtao in /Users/xiazhengtao/project/localProject)
+[INFO ] 2019-10-17 17:24:28,729 [main] org.springframework.boot.SpringApplication.logStartupProfileInfo(SpringApplication.java:650) >>> The following profiles are active: release
+[INFO ] 2019-10-17 17:24:29,504 [main] org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:90) >>> Tomcat initialized with port(s): 8099 (http)
+[WARN ] 2019-10-17 17:24:29,518 [main] org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:557) >>> Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Unable to start web server; nested exception is java.lang.NoClassDefFoundError: org/apache/logging/log4j/util/StackLocatorUtil
+[INFO ] 2019-10-17 17:24:29,524 [main] org.springframework.boot.autoconfigure.logging.ConditionEvaluationReportLoggingListener.logMessage(ConditionEvaluationReportLoggingListener.java:135) >>> 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+[ERROR] 2019-10-17 17:24:29,530 [main] org.springframework.boot.SpringApplication.reportFailure(SpringApplication.java:821) >>> Application run failed
+org.springframework.context.ApplicationContextException: Unable to start web server; nested exception is java.lang.NoClassDefFoundError: org/apache/logging/log4j/util/StackLocatorUtil
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:155) ~[spring-boot-2.1.6.RELEASE.jar:2.1.6.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:543) ~[spring-context-5.1.8.RELEASE.jar:5.1.8.RELEASE]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:140) ~[spring-boot-2.1.6.RELEASE.jar:2.1.6.RELEASE]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:742) [spring-boot-2.1.6.RELEASE.jar:2.1.6.RELEASE]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:389) [spring-boot-2.1.6.RELEASE.jar:2.1.6.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:311) [spring-boot-2.1.6.RELEASE.jar:2.1.6.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1213) [spring-boot-2.1.6.RELEASE.jar:2.1.6.RELEASE]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1202) [spring-boot-2.1.6.RELEASE.jar:2.1.6.RELEASE]
+	at com.example.localproject.LocalprojectApplication.main(LocalprojectApplication.java:10) [classes/:?]
+Caused by: java.lang.NoClassDefFoundError: org/apache/logging/log4j/util/StackLocatorUtil
+	at org.apache.logging.slf4j.Log4jLoggerFactory.getContext(Log4jLoggerFactory.java:42) ~[log4j-slf4j-impl-2.11.2.jar:2.11.2]
+	at org.apache.logging.log4j.spi.AbstractLoggerAdapter.getLogger(AbstractLoggerAdapter.java:42) ~[log4j-api-2.6.2.jar:2.6.2]
+	at org.apache.logging.slf4j.Log4jLoggerFactory.getLogger(Log4jLoggerFactory.java:29) ~[log4j-slf4j-impl-2.11.2.jar:2.11.2]
+	at org.slf4j.LoggerFactory.getLogger(LoggerFactory.java:358) ~[slf4j-api-1.7.26.jar:1.7.26]
+	at org.slf4j.bridge.SLF4JBridgeHandler.getSLF4JLogger(SLF4JBridgeHandler.java:202) ~[jul-to-slf4j-1.7.26.jar:1.7.26]
+	at org.slf4j.bridge.SLF4JBridgeHandler.publish(SLF4JBridgeHandler.java:293) ~[jul-to-slf4j-1.7.26.jar:1.7.26]
+	at java.util.logging.Logger.log(Logger.java:738) ~[?:1.8.0_201]
+	at java.util.logging.Logger.doLog(Logger.java:765) ~[?:1.8.0_201]
+	at java.util.logging.Logger.logp(Logger.java:1042) ~[?:1.8.0_201]
+	at org.apache.juli.logging.DirectJDKLog.log(DirectJDKLog.java:175) ~[tomcat-embed-core-9.0.21.jar:9.0.21]
+	at org.apache.juli.logging.DirectJDKLog.error(DirectJDKLog.java:141) ~[tomcat-embed-core-9.0.21.jar:9.0.21]
+	at org.apache.catalina.util.LifecycleBase.destroy(LifecycleBase.java:296) ~[tomcat-embed-core-9.0.21.jar:9.0.21]
+	at org.apache.catalina.startup.Tomcat.destroy(Tomcat.java:478) ~[tomcat-embed-core-9.0.21.jar:9.0.21]
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.destroySilently(TomcatWebServer.java:243) ~[spring-boot-2.1.6.RELEASE.jar:2.1.6.RELEASE]
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.initialize(TomcatWebServer.java:123) ~[spring-boot-2.1.6.RELEASE.jar:2.1.6.RELEASE]
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.<init>(TomcatWebServer.java:86) ~[spring-boot-2.1.6.RELEASE.jar:2.1.6.RELEASE]
+	at org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory.getTomcatWebServer(TomcatServletWebServerFactory.java:414) ~[spring-boot-2.1.6.RELEASE.jar:2.1.6.RELEASE]
+	at org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory.getWebServer(TomcatServletWebServerFactory.java:178) ~[spring-boot-2.1.6.RELEASE.jar:2.1.6.RELEASE]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.createWebServer(ServletWebServerApplicationContext.java:179) ~[spring-boot-2.1.6.RELEASE.jar:2.1.6.RELEASE]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.onRefresh(ServletWebServerApplicationContext.java:152) ~[spring-boot-2.1.6.RELEASE.jar:2.1.6.RELEASE]
+	... 8 more
