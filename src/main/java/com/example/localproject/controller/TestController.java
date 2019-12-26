@@ -3,6 +3,7 @@ package com.example.localproject.controller;
 import com.alibaba.fastjson.JSON;
 import com.example.localproject.domain.AppResponse;
 import com.example.localproject.domain.DemoDto;
+import com.example.localproject.domain.Student;
 import com.example.localproject.reqdomain.TestReq;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,7 +16,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.Date;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * @author xiazhengtao
@@ -52,4 +54,25 @@ public class TestController {
         modelAndView.setViewName("index");
         return modelAndView;
     }
+
+    public static void main(String[] args) {
+        List<Student> list = new ArrayList<>();
+        list.add(new Student(1L, "zhangsan"));
+        list.add(new Student(2L, "lisi"));
+
+        Map<Integer, String> result = list.stream().filter(student -> student.getStuId()>1).collect(Collectors.toMap(student -> (int)student.getStuId(),Student::getStuName));
+
+        result.forEach((key,value)-> System.out.println(key+"======="+value));
+
+
+        String s = "null";
+        Student student = null;
+        String test = Optional.ofNullable(s).orElse("test");
+        System.out.println(test);
+
+        Student wangwu = Optional.ofNullable(student).filter(student1 -> student1.getStuId() > 0).orElse(new Student(3L, "wangwu"));
+        System.out.println(wangwu);
+    }
+
 }
+
