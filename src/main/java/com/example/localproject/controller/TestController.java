@@ -72,6 +72,11 @@ public class TestController {
 
         Student wangwu = Optional.ofNullable(student).filter(student1 -> student1.getStuId() > 0).orElse(new Student(3L, "wangwu"));
         System.out.println(wangwu);
+
+        Integer rowNum = 2001;
+        Integer integer = Optional.ofNullable(rowNum).filter(row -> row > 2000).orElse(2000);
+        System.out.println(integer);
+
     }
 
 }
