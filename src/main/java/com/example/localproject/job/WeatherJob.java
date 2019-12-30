@@ -4,7 +4,6 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
-import com.example.localproject.controller.TestController;
 import com.example.localproject.domain.WeatherDto;
 import com.example.localproject.wechatMsg.WeChatUtils;
 import org.apache.http.client.HttpClient;
@@ -29,20 +28,9 @@ import org.springframework.web.client.RestTemplate;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.SocketTimeoutException;
-import java.net.URL;
-import java.net.URLConnection;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * @author xiazhengtao
@@ -62,8 +50,8 @@ public class WeatherJob {
 
     public static final String shanghaiCityName = "上海";
 
-    @PostConstruct
-    @Scheduled(cron = "0 0 6 * * ?")
+//    @PostConstruct
+//    @Scheduled(cron = "0 0 6 * * ?")
     public void init() {
 
         String msg = getWeather(taiCangName);
@@ -94,7 +82,7 @@ public class WeatherJob {
                             append("今日").append(weatherDto.getDate()).append("\n").
                             append("天气:").append(weatherDto.getType()).append("\n").
                             append("温度:").append(weatherDto.getLow()).append("  -  ").append(weatherDto.getHigh()).append("\n").
-                            append("风向:").append(weatherDto.getFengxiang()).append(",  风力:").append(fengli.substring(fengli.indexOf("[")+7, fengli.indexOf("]"))).append("\n").
+                            append("风向:").append(weatherDto.getFengxiang()).append(",  风力:").append(fengli.substring(fengli.indexOf("[") + 7, fengli.indexOf("]"))).append("\n").
                             append("感冒指数:").append(jsonObject1.getString("ganmao")).append("\n\n");
 
                     WeatherDto weatherDto1 = weatherDtos.get(1);
@@ -102,7 +90,7 @@ public class WeatherJob {
                     stringBuilder.append("明日").append(weatherDto1.getDate()).append("\n").
                             append("天气:").append(weatherDto1.getType()).append("\n").
                             append("温度:").append(weatherDto1.getLow()).append("  -  ").append(weatherDto1.getHigh()).append("\n").
-                            append("风向:").append(weatherDto.getFengxiang()).append(",  风力:").append(fengli1.substring(fengli1.indexOf("[")+7, fengli1.indexOf("]"))).append("\n");
+                            append("风向:").append(weatherDto.getFengxiang()).append(",  风力:").append(fengli1.substring(fengli1.indexOf("[") + 7, fengli1.indexOf("]"))).append("\n");
 
                 }
                 WeChatUtils.send_Msg(stringBuilder.toString());
@@ -182,7 +170,7 @@ public class WeatherJob {
                         append("今日").append(weatherDto.getDate()).append("\n").
                         append("天气:").append(weatherDto.getType()).append("\n").
                         append("温度:").append(weatherDto.getLow()).append("  -  ").append(weatherDto.getHigh()).append("\n").
-                        append("风向:").append(weatherDto.getFengxiang()).append(",  风力:").append(fengli.substring(fengli.indexOf("[")+7, fengli.indexOf("]"))).append("\n").
+                        append("风向:").append(weatherDto.getFengxiang()).append(",  风力:").append(fengli.substring(fengli.indexOf("[") + 7, fengli.indexOf("]"))).append("\n").
                         append("感冒指数:").append(jsonObject1.getString("ganmao")).append("\n\n");
                 WeatherDto weatherDto1 = weatherDtos.get(1);
                 String fengli1 = weatherDto1.getFengli();
@@ -190,11 +178,11 @@ public class WeatherJob {
                 stringBuilder.append("明日").append(weatherDto1.getDate()).append("\n").
                         append("天气:").append(weatherDto1.getType()).append("\n").
                         append("温度:").append(weatherDto1.getLow()).append("  -  ").append(weatherDto1.getHigh()).append("\n").
-                        append("风向:").append(weatherDto.getFengxiang()).append(",  风力:").append(fengli1.substring(fengli1.indexOf("[")+7, fengli1.indexOf("]"))).append("\n");
+                        append("风向:").append(weatherDto.getFengxiang()).append(",  风力:").append(fengli1.substring(fengli1.indexOf("[") + 7, fengli1.indexOf("]"))).append("\n");
 
             }
 //            WeChatUtils.send_Msg(stringBuilder.toString());
-         System.out.println(stringBuilder.toString());
+            System.out.println(stringBuilder.toString());
         }
     }
 }
