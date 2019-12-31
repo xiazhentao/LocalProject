@@ -1,5 +1,6 @@
 package com.example.localproject.job;
 
+import cn.hutool.core.date.DateUtil;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
@@ -50,8 +51,8 @@ public class WeatherJob {
 
     public static final String shanghaiCityName = "上海";
 
-//    @PostConstruct
-//    @Scheduled(cron = "0 0 6 * * ?")
+    @PostConstruct
+    @Scheduled(cron = "0 30 6 * * ? *")
     public void init() {
 
         String msg = getWeather(taiCangName);
@@ -93,7 +94,8 @@ public class WeatherJob {
                             append("风向:").append(weatherDto.getFengxiang()).append(",  风力:").append(fengli1.substring(fengli1.indexOf("[") + 7, fengli1.indexOf("]"))).append("\n");
 
                 }
-                WeChatUtils.send_Msg(stringBuilder.toString());
+                logger.info(stringBuilder.toString());
+//                WeChatUtils.send_Msg(stringBuilder.toString());
                 status = "OK \n";
             }
         } catch (RestClientException e) {
@@ -184,5 +186,6 @@ public class WeatherJob {
 //            WeChatUtils.send_Msg(stringBuilder.toString());
             System.out.println(stringBuilder.toString());
         }
+
     }
 }
