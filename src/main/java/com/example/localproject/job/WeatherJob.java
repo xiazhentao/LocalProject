@@ -95,7 +95,7 @@ public class WeatherJob {
 
                 }
                 logger.info(stringBuilder.toString());
-//                WeChatUtils.send_Msg(stringBuilder.toString());
+                WeChatUtils.send_Msg(stringBuilder.toString());
                 status = "OK \n";
             }
         } catch (RestClientException e) {
