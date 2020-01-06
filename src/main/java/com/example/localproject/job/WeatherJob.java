@@ -1,12 +1,10 @@
 package com.example.localproject.job;
 
-import cn.hutool.core.date.DateUtil;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
 import com.example.localproject.domain.WeatherDto;
-import com.example.localproject.wechatMsg.WeChatUtils;
 import org.apache.http.client.HttpClient;
 import org.apache.http.impl.client.DefaultHttpRequestRetryHandler;
 import org.apache.http.impl.client.HttpClientBuilder;
@@ -52,7 +50,7 @@ public class WeatherJob {
     public static final String shanghaiCityName = "上海";
 
     @PostConstruct
-    @Scheduled(cron = "0 30 6 * * ? *")
+    @Scheduled(cron = "0 30 6 * * ?")
     public void init() {
 
         String msg = getWeather(taiCangName);
@@ -95,7 +93,7 @@ public class WeatherJob {
 
                 }
                 logger.info(stringBuilder.toString());
-                WeChatUtils.send_Msg(stringBuilder.toString());
+//                WeChatUtils.send_Msg(stringBuilder.toString());
                 status = "OK \n";
             }
         } catch (RestClientException e) {
