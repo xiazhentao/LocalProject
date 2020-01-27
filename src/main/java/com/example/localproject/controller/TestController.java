@@ -1,5 +1,6 @@
 package com.example.localproject.controller;
 
+import cn.hutool.core.date.DateUtil;
 import com.alibaba.fastjson.JSON;
 import com.example.localproject.domain.AppResponse;
 import com.example.localproject.domain.DemoDto;
@@ -76,6 +77,27 @@ public class TestController {
         Integer rowNum = 2001;
         Integer integer = Optional.ofNullable(rowNum).filter(row -> row > 2000).orElse(2000);
         System.out.println(integer);
+
+
+
+        Map<String, Object> result1 = new LinkedHashMap<>();
+        HashMap<String, Object> params = new HashMap<>();
+        params.put("content", "{'orgCode':'210045'}"); //json字符串,写入前置库数据
+        params.put("bizType", "taking"); //业务类型 taking handon signature...
+        params.put("appId",   "zunzhe");  //在前置库申请的应用名称
+        params.put("charset", "UTF-8"); //验签参数编码字符集
+        params.put("signType", "RSA"); //目前只支持RSA的验签方式
+        params.put("timestamp", DateUtil.now()); //当前时间戳格式 yyyy-MM-dd HH:mm:ss.SSS
+        params.put("version", "1.0"); //所有服务器端用户版本号1.0
+
+        params.entrySet().stream()
+                .filter(e -> e.getValue() != null && !"".equals(e.getValue()) && !"sign".equals(e.getKey()))
+                .sorted(Map.Entry.<String, Object>comparingByKey())
+                .forEachOrdered(e -> result1.put(e.getKey(), e.getValue()));
+
+        StringBuilder signStr = new StringBuilder("");
+        result1.forEach((key, value) -> signStr.append(key).append("=").append(value).append("&"));
+        signStr.deleteCharAt(signStr.length()-1);
 
     }
 
